@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 @ContextConfiguration(classes = CommonSarchConfig.class)
 public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
 
-    Logger logger = Logger.getLogger("TestCommonSearch");
+    private Logger logger = Logger.getLogger("TestCommonSearch");
 
     @Autowired
     CommonSearch search;
