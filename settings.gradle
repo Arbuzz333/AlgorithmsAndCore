@@ -1,2 +1,3 @@
-rootProject.name = 'arrayfind'
+rootProject.name = 'algorithms'
+include 'generics'
 

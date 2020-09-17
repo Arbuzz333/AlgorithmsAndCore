@@ -1,8 +1,8 @@
-package ru.sberbank.create;
+package ru.greenbank.create;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import ru.sberbank.entity.Element;
+import ru.greenbank.entity.Element;
 
 import java.util.stream.IntStream;
 

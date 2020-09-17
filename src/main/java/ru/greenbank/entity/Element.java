@@ -1,4 +1,4 @@
-package ru.sberbank.entity;
+package ru.greenbank.entity;
 
 
 public class Element {

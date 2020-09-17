@@ -1,6 +1,6 @@
-package ru.sberbank.service;
+package ru.greenbank.service;
 
-import ru.sberbank.entity.Element;
+import ru.greenbank.entity.Element;
 
 import java.util.List;
 
