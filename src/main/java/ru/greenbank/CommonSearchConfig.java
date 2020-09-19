@@ -9,7 +9,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @ComponentScan(basePackages = "ru.greenbank")
 @PropertySource(value = { "classpath:application.properties" })
-public class CommonSarchConfig {
+public class CommonSearchConfig {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

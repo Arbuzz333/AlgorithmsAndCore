@@ -13,3 +13,6 @@
 	5. заполнение массива идет в FillElementsArray
 	6. поиск списка из значений в application.properties происходит в CommonSearch.
 	7. результат выводится в виде списка объектов.
+# Generics	
+## пакет ru.agreement
+   1. «Дженерики» инвариантны.	

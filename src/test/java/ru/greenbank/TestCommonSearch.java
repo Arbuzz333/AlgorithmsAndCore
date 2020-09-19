@@ -17,7 +17,9 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@ContextConfiguration(classes = CommonSarchConfig.class)
+
+
+@ContextConfiguration(classes = CommonSearchConfig.class)
 public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
 
     private Logger logger = Logger.getLogger("TestCommonSearch");
