@@ -33,7 +33,7 @@ public class EntitiesGenerator {
                         new BigDecimal(7000),
                         Pledge.APARTMENT, AgricultureType.ANIMAL_HUSBANDRY);
 
-        return buildList(mortgageAgreementEleven, agricultureAgreementTwelve);
+        return List.of(mortgageAgreementEleven, agricultureAgreementTwelve);
     }
 
     public List<MortgageAgreement> generateMortgageAgreement() {
