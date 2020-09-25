@@ -1,9 +1,8 @@
 plugins {
     id 'java'
-    id 'application'
 }
 
-group 'greenbank'
+group 'javagenerics'
 version '1.0.1'
 
 sourceCompatibility = 1.9
@@ -20,16 +19,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework/spring-test
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.0.RELEASE'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'jrgradle.App'
-    }
-    from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-}
-
-wrapper {
-    gradleVersion = '6.5'
 }

@@ -1,4 +1,4 @@
-package ru.sberbank;
+package ru.greenbank;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,9 +7,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@ComponentScan(basePackages = "ru.sberbank")
+@ComponentScan(basePackages = "ru.greenbank")
 @PropertySource(value = { "classpath:application.properties" })
-public class CommonSarchConfig {
+public class CommonSearchConfig {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

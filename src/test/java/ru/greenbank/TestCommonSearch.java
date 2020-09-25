@@ -1,4 +1,4 @@
-package ru.sberbank;
+package ru.greenbank;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import ru.sberbank.create.FillElementsArray;
-import ru.sberbank.entity.Element;
-import ru.sberbank.service.SearchElements;
+import ru.greenbank.create.FillElementsArray;
+import ru.greenbank.entity.Element;
+import ru.greenbank.service.SearchElements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,12 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@ContextConfiguration(classes = CommonSarchConfig.class)
+
+
+@ContextConfiguration(classes = CommonSearchConfig.class)
 public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
 
-    Logger logger = Logger.getLogger("TestCommonSearch");
+    private Logger logger = Logger.getLogger("TestCommonSearch");
 
     @Autowired
     CommonSearch search;
