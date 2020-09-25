@@ -60,18 +60,10 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
             }};
     }
 
-    /*Тест для size = 9, x = 2, y = 3*/
+    /*Тест для size = 9, x = 2, y = 3
+    * эти значения бурутся из application.properties*/
     @Test
-    public void commonSeachTest() {
-        List<Element> elements = search.search();
-        Assert.assertEquals(8, elements.size());
-        Assert.assertEquals(elementsDefault, elements);
-        logger.info(elements.toString());
-    }
-
-    /*Тест для size = 9, x = 2, y = 3*/
-    @Test
-    public void commonSeachTestArrayFromSream() {
+    public void commonSearchTestArrayFromSream() {
         Element[][] elements1FromStream = array.fillingByStream();
 
         List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(x, y));
