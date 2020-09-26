@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 @ContextConfiguration(classes = CommonSearchConfig.class)
 public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
 
-    private Logger logger = Logger.getLogger("TestCommonSearch");
+    private final Logger logger = Logger.getLogger("TestCommonSearch");
 
     @Autowired
     CommonSearch search;
@@ -60,40 +60,16 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
             }};
     }
 
-    /*Тест для size = 9, x = 2, y = 3
+    /* Зполнение массива через сервис FillElementsArray
+    * Тест для size = 9, x = 2, y = 3
     * эти значения бурутся из application.properties*/
     @Test
-    public void commonSearchTestArrayFromSream() {
+    public void commonSearchTestArrayFromStream() {
         Element[][] elements1FromStream = array.fillingByStream();
 
         List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(x, y));
         Assert.assertEquals(8, elements.size());
         Assert.assertEquals(elementsDefault, elements);
-        logger.info(elements.toString());
-    }
-
-    private List<Element> elementsExpectedLeftTop;
-
-    /* <{0, 8}> {1, 8}*/
-    /* {0, 7}  {1, 7}*/
-    @Before
-    public void expectedListLeftTop() {
-        elementsExpectedLeftTop = new ArrayList<Element>(3) {
-            {
-                add(new Element(1, 8));
-                add(new Element(1, 7));
-                add(new Element(0, 7));
-            }};
-    }
-
-    /* Тест для size = 9 */
-    @Test
-    public void commonSearchTestArrayLeftTop() {
-        Element[][] elements1FromStream = array.fillingByStream();
-
-        List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(0, 8));
-        Assert.assertEquals(3, elements.size());
-        Assert.assertEquals(elementsExpectedLeftTop, elements);
         logger.info(elements.toString());
     }
 
