@@ -13,7 +13,6 @@ import ru.greenbank.service.SearchElements;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,8 +20,6 @@ import java.util.stream.Stream;
 
 @ContextConfiguration(classes = CommonSearchConfig.class)
 public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
-
-    private final Logger logger = Logger.getLogger("TestCommonSearch");
 
     @Autowired
     CommonSearch search;
@@ -39,14 +36,18 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
     @Value("${y}")
     private int y;
 
-    private List<Element> elementsDefault;
+    /* {1, 4} {2, 4} {3, 4}*/
+    /* {1, 3}*{2, 3}*{3, 3}*/
+    /* {1, 2} {2, 2} {3, 2}*/
+    private List<Element> elementsExpectedDefault;
 
-   /* {1, 4} {2, 4} {3, 4}*/
-   /* {1, 3}*{2, 3}*{3, 3}*/
-   /* {1, 2} {2, 2} {3, 2}*/
+    /* {0, 1} <{1, 1}>*/
+    /* {0, 0}  {1, 0}*/
+    private List<Element> elementsExpectedTwoSize;
+
     @Before
     public void expectedListFromDefaultProperties() {
-        elementsDefault = new ArrayList<Element>(8) {
+        elementsExpectedDefault = new ArrayList<Element>(8) {
             {
                 add(new Element(1, 2));
                 add(new Element(1, 3));
@@ -57,6 +58,12 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
                 add(new Element(3, 2));
                 add(new Element(2, 2));
 
+            }};
+        elementsExpectedTwoSize = new ArrayList<Element>(3) {
+            {
+                add(new Element(0, 0));
+                add(new Element(0, 1));
+                add(new Element(1, 0));
             }};
     }
 
@@ -69,25 +76,11 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
 
         List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(x, y));
         Assert.assertEquals(8, elements.size());
-        Assert.assertEquals(elementsDefault, elements);
+        Assert.assertEquals(elementsExpectedDefault, elements);
         logger.info(elements.toString());
     }
 
-    private List<Element> elementsExpectedTwoSize;
-
-    /* {0, 1} <{1, 1}>*/
-    /* {0, 0}  {1, 0}*/
-    @Before
-    public void expectedListTwoSize() {
-        elementsExpectedTwoSize = new ArrayList<Element>(3) {
-            {
-                add(new Element(0, 0));
-                add(new Element(0, 1));
-                add(new Element(1, 0));
-            }};
-    }
-
-    /* Тест для size = 2 */
+    /* Тест для size = 2 x = 1, y = 1*/
     @Test
     public void commonSearchTestArrayTwoSize() {
         Element[][] elements1FromStream = array.fillingByStreamSize(2);
