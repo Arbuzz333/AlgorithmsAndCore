@@ -14,5 +14,9 @@
 	6. поиск списка из значений в application.properties происходит в CommonSearch.
 	7. результат выводится в виде списка объектов.
 # Generics	
-## пакет ru.agreement
+## 2. пакет ru.agreement
    1. «Дженерики» инвариантны.	
+# JUNIT5
+## 3. пакет ru.duplicates
+   1. Поиск дубликатов в массиве int[] 
+   
