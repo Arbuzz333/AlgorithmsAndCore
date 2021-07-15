@@ -1,7 +1,6 @@
 package ru.duplicates;
 
 
-
 public class BruteForce implements SearchDuplicateArray {
 
     /*O(n²) — временная сложность и O(1) — пространственная сложность.*/

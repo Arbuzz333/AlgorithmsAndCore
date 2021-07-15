@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.ArgumentsProvider;
 import java.util.stream.Stream;
 
 
-
-
 public class ArraysSourceTest implements ArgumentsProvider {
 
     @Override

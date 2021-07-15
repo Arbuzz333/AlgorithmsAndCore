@@ -6,7 +6,7 @@ plugins {
 group 'greenbank'
 version '1.0.1'
 
-sourceCompatibility = 1.9
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -14,33 +14,26 @@ repositories {
 
 dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-core
-    compile group: 'org.springframework', name: 'spring-core', version: '5.2.0.RELEASE'
+    implementation 'org.springframework:spring-core:5.2.0.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework/spring-context
-    compile group: 'org.springframework', name: 'spring-context', version: '5.2.0.RELEASE'
+    implementation 'org.springframework:spring-context:5.2.0.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework/spring-test
-    testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.0.RELEASE'
-    testCompile 'org.junit.platform:junit-platform-commons:1.7.0'
-    testCompile 'org.junit.platform:junit-platform-launcher:1.7.0'
-    testCompile 'org.junit.jupiter:junit-jupiter:5.7.0'
-    testCompile 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    testCompile 'org.junit.vintage:junit-vintage-engine:5.7.0'
-    testCompile 'org.junit:junit-bom:5.7.0'
-    testCompile 'org.apiguardian:apiguardian-api:1.1.0'
-    testCompile 'org.opentest4j:opentest4j:1.2.0'
+    testImplementation 'org.springframework:spring-test:5.2.0.RELEASE'
+    testImplementation 'org.junit.platform:junit-platform-commons:1.7.0'
+    testImplementation 'org.junit.platform:junit-platform-launcher:1.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.0'
+//    testImplementation 'org.junit:junit-bom:5.7.0'
+    testImplementation 'org.apiguardian:apiguardian-api:1.1.0'
+    testImplementation 'org.opentest4j:opentest4j:1.2.0'
 }
 
 test {
     useJUnitPlatform()
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'jrgradle.App'
-    }
-    from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-}
-
 wrapper {
-    gradleVersion = '6.5'
+    gradleVersion = '7.1.1'
 }
