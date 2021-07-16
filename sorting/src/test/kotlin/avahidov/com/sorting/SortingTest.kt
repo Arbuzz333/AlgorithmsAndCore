@@ -1,6 +1,10 @@
 package avahidov.com.sorting
 
 import avahidov.com.sorting.bubble.BubbleSorting
+import avahidov.com.sorting.comb.CombSort
+import avahidov.com.sorting.insertion.InsertionSort
+import avahidov.com.sorting.quick.QuickSort
+import avahidov.com.sorting.selection.SelectionSort
 import avahidov.com.sorting.shaker.ShakerSort
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertArrayEquals
@@ -12,7 +16,7 @@ import java.util.logging.Logger
 
 internal class SortingTest {
 
-    private val logger = Logger.getLogger(SortingTest::class.java.getName())
+    private val logger = Logger.getLogger(SortingTest::class.java.name)
 
     @BeforeEach
     fun setUp() {
@@ -38,8 +42,52 @@ internal class SortingTest {
     @ParameterizedTest
     @ArgumentsSource(ArraysSourceTest::class)
     fun sortShakerFun(expected: Array<Int>, array: Array<Int>) {
-        val bubbleSorting = ShakerSort()
-        val sorted = bubbleSorting.sortFun(array)
+        val sorting = ShakerSort()
+        val sorted = sorting.sortFun(array)
+
+        logger.info(array.contentToString() + " **** " + sorted.contentToString())
+
+        assertArrayEquals(expected, sorted)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArraysSourceTest::class)
+    fun sortCombFun(expected: Array<Int>, array: Array<Int>) {
+        val sorting = CombSort()
+        val sorted = sorting.sortFun(array)
+
+        logger.info(array.contentToString() + " **** " + sorted.contentToString())
+
+        assertArrayEquals(expected, sorted)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArraysSourceTest::class)
+    fun sortInsertionFun(expected: Array<Int>, array: Array<Int>) {
+        val sorting = InsertionSort()
+        val sorted = sorting.sortFun(array)
+
+        logger.info(array.contentToString() + " **** " + sorted.contentToString())
+
+        assertArrayEquals(expected, sorted)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArraysSourceTest::class)
+    fun sortSelectionFun(expected: Array<Int>, array: Array<Int>) {
+        val sorting = SelectionSort()
+        val sorted = sorting.sortFun(array)
+
+        logger.info(array.contentToString() + " **** " + sorted.contentToString())
+
+        assertArrayEquals(expected, sorted)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArraysSourceTest::class)
+    fun sortQuickFun(expected: Array<Int>, array: Array<Int>) {
+        val sorting = QuickSort()
+        val sorted = sorting.sortFun(array)
 
         logger.info(array.contentToString() + " **** " + sorted.contentToString())
 

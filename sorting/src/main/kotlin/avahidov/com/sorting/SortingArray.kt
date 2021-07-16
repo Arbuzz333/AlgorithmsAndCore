@@ -1,7 +1,7 @@
 package avahidov.com.sorting
 
 
-interface SortingList {
+interface SortingArray {
 
     fun sortFun(original: Array<Int>): Array<Int>
 

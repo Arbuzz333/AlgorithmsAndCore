@@ -1,9 +1,9 @@
 package avahidov.com.sorting.bubble
 
-import avahidov.com.sorting.SortingList
+import avahidov.com.sorting.SortingArray
 
 
-class BubbleSorting: SortingList {
+class BubbleSorting: SortingArray {
 
     override fun sortFun(original: Array<Int>): Array<Int> {
         val size = original.size

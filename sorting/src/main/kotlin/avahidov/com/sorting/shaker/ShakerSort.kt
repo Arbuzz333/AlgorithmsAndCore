@@ -1,9 +1,9 @@
 package avahidov.com.sorting.shaker
 
-import avahidov.com.sorting.SortingList
+import avahidov.com.sorting.SortingArray
 
 
-class ShakerSort: SortingList {
+class ShakerSort: SortingArray {
 
     override fun sortFun(original: Array<Int>): Array<Int> {
         if (original.isEmpty()) {
