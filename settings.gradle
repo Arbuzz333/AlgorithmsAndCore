@@ -1,3 +1,4 @@
-rootProject.name = 'algorithms'
+rootProject.name = 'algorithmsAndCore'
 include 'generics'
-
+include 'searchduplicatesarray'
+include 'sorting'

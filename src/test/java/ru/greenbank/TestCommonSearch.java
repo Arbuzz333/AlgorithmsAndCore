@@ -13,7 +13,6 @@ import ru.greenbank.service.SearchElements;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,8 +20,6 @@ import java.util.stream.Stream;
 
 @ContextConfiguration(classes = CommonSearchConfig.class)
 public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
-
-    private Logger logger = Logger.getLogger("TestCommonSearch");
 
     @Autowired
     CommonSearch search;
@@ -39,14 +36,18 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
     @Value("${y}")
     private int y;
 
-    private List<Element> elementsDefault;
+    /* {1, 4} {2, 4} {3, 4}*/
+    /* {1, 3}*{2, 3}*{3, 3}*/
+    /* {1, 2} {2, 2} {3, 2}*/
+    private List<Element> elementsExpectedDefault;
 
-   /* {1, 4} {2, 4} {3, 4}*/
-   /* {1, 3}*{2, 3}*{3, 3}*/
-   /* {1, 2} {2, 2} {3, 2}*/
+    /* {0, 1} <{1, 1}>*/
+    /* {0, 0}  {1, 0}*/
+    private List<Element> elementsExpectedTwoSize;
+
     @Before
     public void expectedListFromDefaultProperties() {
-        elementsDefault = new ArrayList<Element>(8) {
+        elementsExpectedDefault = new ArrayList<Element>(8) {
             {
                 add(new Element(1, 2));
                 add(new Element(1, 3));
@@ -58,59 +59,6 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
                 add(new Element(2, 2));
 
             }};
-    }
-
-    /*Тест для size = 9, x = 2, y = 3*/
-    @Test
-    public void commonSeachTest() {
-        List<Element> elements = search.search();
-        Assert.assertEquals(8, elements.size());
-        Assert.assertEquals(elementsDefault, elements);
-        logger.info(elements.toString());
-    }
-
-    /*Тест для size = 9, x = 2, y = 3*/
-    @Test
-    public void commonSeachTestArrayFromSream() {
-        Element[][] elements1FromStream = array.fillingByStream();
-
-        List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(x, y));
-        Assert.assertEquals(8, elements.size());
-        Assert.assertEquals(elementsDefault, elements);
-        logger.info(elements.toString());
-    }
-
-    private List<Element> elementsExpectedLeftTop;
-
-    /* <{0, 8}> {1, 8}*/
-    /* {0, 7}  {1, 7}*/
-    @Before
-    public void expectedListLeftTop() {
-        elementsExpectedLeftTop = new ArrayList<Element>(3) {
-            {
-                add(new Element(1, 8));
-                add(new Element(1, 7));
-                add(new Element(0, 7));
-            }};
-    }
-
-    /* Тест для size = 9 */
-    @Test
-    public void commonSearchTestArrayLeftTop() {
-        Element[][] elements1FromStream = array.fillingByStream();
-
-        List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(0, 8));
-        Assert.assertEquals(3, elements.size());
-        Assert.assertEquals(elementsExpectedLeftTop, elements);
-        logger.info(elements.toString());
-    }
-
-    private List<Element> elementsExpectedTwoSize;
-
-    /* {0, 1} <{1, 1}>*/
-    /* {0, 0}  {1, 0}*/
-    @Before
-    public void expectedListTwoSize() {
         elementsExpectedTwoSize = new ArrayList<Element>(3) {
             {
                 add(new Element(0, 0));
@@ -119,7 +67,20 @@ public class TestCommonSearch extends AbstractJUnit4SpringContextTests {
             }};
     }
 
-    /* Тест для size = 2 */
+    /* Зполнение массива через сервис FillElementsArray
+    * Тест для size = 9, x = 2, y = 3
+    * эти значения бурутся из application.properties*/
+    @Test
+    public void commonSearchTestArrayFromStream() {
+        Element[][] elements1FromStream = array.fillingByStream();
+
+        List<Element> elements = searchElements.searchNeighboringCoordinatesByVector(elements1FromStream, new Element(x, y));
+        Assert.assertEquals(8, elements.size());
+        Assert.assertEquals(elementsExpectedDefault, elements);
+        logger.info(elements.toString());
+    }
+
+    /* Тест для size = 2 x = 1, y = 1*/
     @Test
     public void commonSearchTestArrayTwoSize() {
         Element[][] elements1FromStream = array.fillingByStreamSize(2);
