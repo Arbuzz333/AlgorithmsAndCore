@@ -10,7 +10,7 @@ class BubbleSorting: SortingArray {
         for (index in original.indices) {
             for (j in index + 1 until size) {
                 if (original[j] < original[index]) {
-                    swapArray(original, j, index)
+                    original swapArray(j to index)
                 }
             }
         }

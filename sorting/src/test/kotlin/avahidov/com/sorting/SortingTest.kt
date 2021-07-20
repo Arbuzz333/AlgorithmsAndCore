@@ -2,7 +2,9 @@ package avahidov.com.sorting
 
 import avahidov.com.sorting.bubble.BubbleSorting
 import avahidov.com.sorting.comb.CombSort
+import avahidov.com.sorting.heap.HeapSort
 import avahidov.com.sorting.insertion.InsertionSort
+import avahidov.com.sorting.merge.MergeSort
 import avahidov.com.sorting.quick.QuickSort
 import avahidov.com.sorting.selection.SelectionSort
 import avahidov.com.sorting.shaker.ShakerSort
@@ -90,6 +92,30 @@ internal class SortingTest {
         val sorted = sorting.sortFun(array)
 
         logger.info(array.contentToString() + " **** " + sorted.contentToString())
+
+        assertArrayEquals(expected, sorted)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArraysSourceTest::class)
+    fun sortMergeFun(expected: Array<Int>, array: Array<Int>) {
+        val original = array.copyOf()
+        val sorting = MergeSort()
+        val sorted = sorting.sortFun(array)
+
+        logger.info(original.contentToString() + " **** " + sorted.contentToString())
+
+        assertArrayEquals(expected, sorted)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(ArraysSourceTest::class)
+    fun sortHeapFun(expected: Array<Int>, array: Array<Int>) {
+        val original = array.copyOf()
+        val sorting = HeapSort()
+        val sorted = sorting.sortFun(array)
+
+        logger.info(original.contentToString() + " **** " + sorted.contentToString())
 
         assertArrayEquals(expected, sorted)
     }

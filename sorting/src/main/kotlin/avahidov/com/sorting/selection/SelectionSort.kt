@@ -8,7 +8,7 @@ class SelectionSort: SortingArray {
     override fun sortFun(original: Array<Int>): Array<Int> {
         for (i in original.indices) {
             val j = findMin(original, i)
-            swapArray(original, i, j)
+            original swapArray(i to j)
         }
         return original
     }

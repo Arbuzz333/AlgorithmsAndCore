@@ -15,7 +15,7 @@ class CombSort : SortingArray {
             for (i in original.indices) {
                 val j = if (i + step < original.size) i + step else original.size - 1
                 if (original[i] > original[j]) {
-                    swapArray(original, i, j)
+                    original swapArray(i to j)
                 }
             }
             step = (step / factor).toInt()

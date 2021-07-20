@@ -5,9 +5,9 @@ interface SortingArray {
 
     fun sortFun(original: Array<Int>): Array<Int>
 
-    fun swapArray(original: Array<Int>, i: Int, j: Int) {
-        val temp = original[i]
-        original[i] = original[j]
-        original[j] = temp
+    infix fun <T> Array<T>.swapArray(p: Pair<Int, Int>) {
+        val temp = this[p.first]
+        this[p.first] = this[p.second]
+        this[p.second] = temp
     }
 }
