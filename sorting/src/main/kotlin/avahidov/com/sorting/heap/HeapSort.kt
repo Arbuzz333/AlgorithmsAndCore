@@ -10,10 +10,7 @@ class HeapSort: SortingArray {
         for (i in n / 2 - 1 downTo  0) heapify(original, n, i)
 
         for (i in n-1 downTo 0) {
-            val temp = original[0]
-            original[0] = original[i]
-            original[i] = temp
-
+            original swapArray (0 to i)
             heapify(original, i, 0)
         }
         return original
@@ -26,8 +23,8 @@ class HeapSort: SortingArray {
         val r = 2 * i + 2
 
         if (l < n && arr[l] > arr[largest]) largest = l
-
         if (r < n && arr[r] > arr[largest]) largest = r
+
         if (largest != i) {
             arr swapArray (i to largest)
             heapify(arr, n, largest)
