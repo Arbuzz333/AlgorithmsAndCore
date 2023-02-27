@@ -41,7 +41,7 @@ public class NeighbourArraySearchTest {
     private SearchElements searchElements;
 
     /*Тест для size = 9, x = 2, y = 3
-    * эти значения бурутся из application.properties*/
+    * эти значения берутся из application.properties*/
     @DisplayName("Test with @MethodSource")
     @ParameterizedTest
     @MethodSource
@@ -71,7 +71,7 @@ public class NeighbourArraySearchTest {
     }
 
     /* Тест для массива размером size = 9 и для элемента x = 0 y = 8
-     * Зполнение массива через сервис FillElementsArray*/
+     * Заполнение массива через сервис FillElementsArray*/
     @DisplayName("Test with @ArgumentsSource")
     @ParameterizedTest
     @ArgumentsSource(ExpectedListLeftTop.class)
