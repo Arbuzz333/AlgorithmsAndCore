@@ -6,7 +6,7 @@ plugins {
 group 'greenbank'
 version '1.0.1'
 
-sourceCompatibility = 17
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -14,12 +14,12 @@ repositories {
 
 dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-core
-    implementation 'org.springframework:spring-core:6.0.4'
+    implementation 'org.springframework:spring-core:5.2.0.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework/spring-context
-    implementation 'org.springframework:spring-context:6.0.4'
+    implementation 'org.springframework:spring-context:5.2.0.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework/spring-test
-    testImplementation 'org.springframework:spring-test:6.0.4'
+    testImplementation 'org.springframework:spring-test:5.2.0.RELEASE'
     testImplementation 'org.junit.platform:junit-platform-commons:1.9.1'
     testImplementation 'org.junit.platform:junit-platform-launcher:1.9.1'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
