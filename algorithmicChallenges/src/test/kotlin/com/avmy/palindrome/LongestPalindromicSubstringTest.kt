@@ -1,6 +1,6 @@
-package com.avmy.palindromicSubstring
+package com.avmy.palindrome
 
-import com.avmy.palindromicSubstring.LongestPalindromicSubstring.longestPalindromic
+import com.avmy.palindrome.LongestPalindromicSubstring.longestPalindromic
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource

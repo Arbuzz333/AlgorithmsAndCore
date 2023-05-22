@@ -1,4 +1,4 @@
-package com.avmy.palindromicSubstring
+package com.avmy.palindrome
 
 
 /*
@@ -40,7 +40,6 @@ object LongestPalindromicSubstring {
     }
 
     private fun palEven(s: String): Pair<Int, Int> {
-
         var dMax = 0
         var iMax = 0
 
