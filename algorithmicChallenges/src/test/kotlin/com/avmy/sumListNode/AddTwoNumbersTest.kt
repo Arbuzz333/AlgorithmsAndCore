@@ -36,7 +36,6 @@ internal class AddTwoNumbersTest {
 
         val result = sumTwoListNode(nextOne, nextTwo)
 
-        println("resultB $result")
         assertEquals(toList(result), data.third)
     }
 
