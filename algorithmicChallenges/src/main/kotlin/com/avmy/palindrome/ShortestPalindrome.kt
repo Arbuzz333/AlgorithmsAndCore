@@ -52,6 +52,35 @@ object ShortestPalindrome {
             evenSubEnd.reversed() + s
         }
 
-
     }
+
+    fun shortestPalindromeKMP(s: String): String {
+        val kmp = kmp(s + "#" + s.reversed())
+        val front = s.substring(kmp[kmp.lastIndex]).reversed()
+        return front + s
+    }
+
+    fun kmp(s: String): IntArray {
+        val n: Int = s.length
+        val buffArray = IntArray(n)
+
+        for (index in 1 until n) {
+            var count = buffArray[index - 1]
+            while (count >= 0) {
+                if (s[count] == s[index]) {
+                    buffArray[index] = count + 1
+                    count = -1
+                } else {
+                    count = if (count - 1 < 0){
+                        -1
+                    } else {
+                        buffArray[count - 1]
+                    }
+                }
+            }
+        }
+
+        return buffArray
+    }
+
 }

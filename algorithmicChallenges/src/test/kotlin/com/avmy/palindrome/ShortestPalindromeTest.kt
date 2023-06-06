@@ -1,5 +1,7 @@
 package com.avmy.palindrome
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -28,6 +30,24 @@ internal class ShortestPalindromeTest{
     fun shortestPalindromeTest(data: Pair<String, String>) {
         val result = ShortestPalindrome.shortestPalindrome(data.first)
 
-        kotlin.test.assertEquals(data.second, result)
+        assertEquals(data.second, result)
     }
+
+    @ParameterizedTest
+    @MethodSource(value = ["stringPair"])
+    fun shortestPalindromeKMPTest(data: Pair<String, String>) {
+        val result = ShortestPalindrome.shortestPalindromeKMP(data.first)
+
+        assertEquals(data.second, result)
+    }
+
+    @Test
+    fun KMPTest() {
+        val arr = ShortestPalindrome.kmp("aabaabaaaabaabaaab")
+
+        assertEquals(arrayOf(0, 1, 0, 1, 2, 3, 4, 5, 2, 2, 3, 4, 5, 6, 7, 8, 9, 3).joinToString(),
+            arr.joinToString()
+        )
+    }
+
 }
