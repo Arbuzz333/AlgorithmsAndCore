@@ -1,7 +1,7 @@
 # Aleksandr Vahidov
 - https://github.com/Arbuzz333/avahidov.git
 * skype: mango777555@hotmail.com
-* +7 995 700 23 59
+* +7 911 501 20 30
 # Arrays, Spring.
 ## пакет ru.greenbank
 ## 1. Поиск соседних элементов в двумерном массиве. Тесты используют Junit5.
