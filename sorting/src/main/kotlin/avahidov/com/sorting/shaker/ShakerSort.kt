@@ -9,21 +9,19 @@ class ShakerSort: SortingArray {
         if (original.isEmpty()) {
             return original
         }
-        var left = 0
         var right = original.size - 1
-        while (left <= right) {
+        for (left in 0..right) {
             var i = right
             while (i > left) {
                 if (original[i - 1] > original[i]) {
-                    swapArray(original, i - 1, i)
+                    original swapArray(i - 1 to i)
                 }
                 --i
             }
-            ++left
             i = left
             while (i < right) {
                 if (original[i] > original[i + 1]) {
-                    swapArray(original, i, i + 1)
+                    original swapArray(i to i + 1)
                 }
                 ++i
             }

@@ -21,16 +21,14 @@ class QuickSort: SortingArray {
     private fun partition(original: Array<Int>, L: Int, R: Int): Int {
         val pointer = original[R]
         var i = (L - 1)
-        var j = L
 
-        while (j < R) {
+        for (j in L until  R) {
             if (original[j] <= pointer) {
                 i++
                 val temp = original[i]
                 original[i] = original[j]
                 original[j] = temp
             }
-            j++
         }
 
         val temp = original[i + 1]

@@ -6,8 +6,7 @@ import avahidov.com.sorting.SortingArray
 class InsertionSort: SortingArray {
 
     override fun sortFun(original: Array<Int>): Array<Int> {
-        var i = 1
-        while (i < original.size) {
+        for (i in 1 until original.size) {
             val x = original[i]
             var j = i
             while (j > 0 && original[j - 1] > x) {
@@ -15,7 +14,6 @@ class InsertionSort: SortingArray {
                 --j
             }
             original[j] = x
-            ++i
         }
         return original
     }
