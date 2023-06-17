@@ -14,6 +14,7 @@ internal class MaximumDeletionsStringTest {
         @JvmStatic
         fun pair(): Stream<Arguments> {
             return Stream.of(
+                    Arguments.of(Pair("aabaab", 3)),
                     Arguments.of(Pair("abcabcdabc", 2)),
                     Arguments.of(Pair("abcdabc", 1)),
                     Arguments.of(Pair("dabc", 1)),
@@ -24,6 +25,7 @@ internal class MaximumDeletionsStringTest {
                     Arguments.of(Pair("aaabaab", 4)),
                     Arguments.of(Pair("ababzyzy", 2)),
                     Arguments.of(Pair("cbccbc", 2)),
+                    Arguments.of(Pair("cbccbccbcty", 3)),
                     Arguments.of(Pair("abaabaababaab", 4)),
                     Arguments.of(Pair("mxmqbmxmqb", 2)),
                     Arguments.of(Pair("ababaababa", 4)),
@@ -37,6 +39,14 @@ internal class MaximumDeletionsStringTest {
     @MethodSource(value = ["pair"])
     fun deleteStringTest(data: Pair<String, Int>) {
         val result = MaximumDeletionsString.deleteString(data.first)
+
+        assertEquals(data.second, result)
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = ["pair"])
+    fun deleteStringTestUnion(data: Pair<String, Int>) {
+        val result = MaximumDeletionsString.deleteStringUnion(data.first)
 
         assertEquals(data.second, result)
     }

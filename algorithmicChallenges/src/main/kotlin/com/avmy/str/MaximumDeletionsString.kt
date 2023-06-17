@@ -33,13 +33,10 @@ object MaximumDeletionsString {
                 if (doubleIndex < size && kmpArray[doubleIndex] == index + 1) {
                     maxCutIndex = index
                 }
-                val add = if (size > 9) 1 else 1
-                if (index + add > size / 2) {
+                if (index + 1 > size / 2) {
                     kmpArray = if (maxCutIndex >= 0) {
                         count++
                         buffStr = buffStr.drop(maxCutIndex + 1)
-                        println("INDEX $index")
-                        println("STR $buffStr")
                         kmp(buffStr)
                     } else {
                         IntArray(0)
@@ -49,6 +46,81 @@ object MaximumDeletionsString {
                 if (maxCutIndex == -1 && index == kmpArray.size - 1) {
                     kmpArray = IntArray(0)
                 }
+            }
+        }
+        return count
+    }
+
+    fun deleteStringUnion(s: String): Int {
+        val countShort = deleteStringShort(s)
+        val countLong = deleteStringLong(s)
+        return if(countShort > countLong) countShort else countLong
+    }
+
+    private fun deleteStringShort(s: String): Int {
+        var n: Int = s.length
+        var buffArray = IntArray(n)
+        var index = 1
+        var count = 1
+        var buffStr = s
+
+        while (index < n) {
+            var diff = buffArray[index - 1]
+            while (diff >= 0) {
+                if (buffStr[diff] == buffStr[index]) {
+                    buffArray[index] = diff + 1
+                    diff = -1
+                } else {
+                    diff = if (diff - 1 < 0) -1 else buffArray[diff - 1]
+                }
+            }
+
+            if (buffArray[index] * 2 - 1 == index) {
+                count++
+                buffStr = buffStr.drop(buffArray[index])
+                n = buffStr.length
+                buffArray = IntArray(buffStr.length)
+                index = 1
+            } else index++
+            if (index == buffArray.size) {
+                n = 0
+            }
+        }
+        return count
+    }
+
+    private fun deleteStringLong(s: String): Int {
+        var n: Int = s.length
+        var buffArray = IntArray(n)
+        var index = 1
+        var count = 1
+        var buffStr = s
+        var cutChar = 0
+
+        while (index < n) {
+            var diff = buffArray[index - 1]
+            while (diff >= 0) {
+                if (buffStr[diff] == buffStr[index]) {
+                    buffArray[index] = diff + 1
+                    diff = -1
+                } else {
+                    diff = if (diff - 1 < 0) -1 else buffArray[diff - 1]
+                }
+            }
+
+            if (buffArray[index] * 2 - 1 == index) {
+                cutChar = buffArray[index]
+            }
+            index++
+            if (index == buffArray.size) {
+                if (cutChar > 0) {
+                    count++
+                    buffStr = buffStr.drop(cutChar)
+                    cutChar = 0
+                    n = buffStr.length
+                    buffArray = IntArray(buffStr.length)
+                    index = 1
+                } else n = 0
             }
         }
         return count
