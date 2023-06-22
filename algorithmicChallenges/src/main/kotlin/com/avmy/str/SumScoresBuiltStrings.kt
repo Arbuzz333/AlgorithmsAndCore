@@ -35,4 +35,22 @@ object SumScoresBuiltStrings {
         return count
     }
 
+    fun sumScoresV2(s: String): Long {
+        var count = 0L
+        val len = s.length
+        for (n in len - 1 downTo 0) {
+            var con = 0L
+            var k = n + 1
+            while (k <= len) {
+                val st = s.substring(n, k)
+                if (s.startsWith(st)) con = (k - n).toLong()
+                if (k > 1 && con == 0L) k = len + 1
+                k++
+            }
+            count += con
+        }
+
+        return count
+    }
+
 }
