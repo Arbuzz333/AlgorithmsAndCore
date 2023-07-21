@@ -12,7 +12,7 @@ package com.avmy.str
 * */
 object SumScoresBuiltStrings {
 
-    fun sumScores(s: String): Long {
+    fun sumScoresV1(s: String): Long {
         var count = 0L
         val len = s.length
         val mapPrefixes = mutableMapOf<String, Long>()
@@ -50,6 +50,37 @@ object SumScoresBuiltStrings {
             count += con
         }
 
+        return count
+    }
+
+    class Data (
+        var ind: Int = 0,
+        var value: Int = 0
+    )
+
+    fun sumScores(s: String): Long {
+        val n: Int = s.length
+        var count = n.toLong()
+        val list = mutableListOf<Data>()
+
+        for (index in 1 until n) {
+            if (s[index] == s[0]) {
+                list.add(Data(index, 0))
+            }
+                val remove = mutableListOf<Data>()
+                list.forEach {
+                    if (s[index] == s[index - it.ind]) it.value += 1
+                    else {
+                        count += it.value
+                        remove.add(it)
+                    }
+                }
+                list.removeAll(remove)
+
+        }
+        list.forEach {
+            count += it.value
+        }
         return count
     }
 
