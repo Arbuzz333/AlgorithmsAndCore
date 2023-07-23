@@ -1,5 +1,7 @@
 package com.avmy.str
 
+import com.avmy.palindrome.ShortestPalindrome.kmp
+
 
 /*
 * You are building a string s of length n one character at a time, prepending each new character to the front of the string. The strings are labeled from 1 to n, where the string with length i is labeled si.
@@ -13,44 +15,17 @@ package com.avmy.str
 object SumScoresBuiltStrings {
 
     fun sumScoresV1(s: String): Long {
-        var count = 0L
         val len = s.length
-        val mapPrefixes = mutableMapOf<String, Long>()
-        for (n in 1..len) {
-            mapPrefixes[s.substring(0, n)] = n.toLong()
+        val list = mutableListOf<Long>()
+        val kmp = kmp(s)
+        println("KMP ${kmp.joinToString() }")
+        for (k in kmp) {
+            val i = if (k == 0) 0 else list[k - 1] + 1
+            list.add(i)
+            println("I $i")
         }
-        for (n in len - 1 downTo 0) {
-            var con = 0L
-            var k = n + 1
-            while (k <= len) {
-                val st = s.substring(n, k)
-                val prefix = mapPrefixes[st]
-                if (prefix != null) con = prefix
-                if (k > 1 && con == 0L) k = len + 1
-                k++
-            }
-            count += con
-        }
-
-        return count
-    }
-
-    fun sumScoresV2(s: String): Long {
-        var count = 0L
-        val len = s.length
-        for (n in len - 1 downTo 0) {
-            var con = 0L
-            var k = n + 1
-            while (k <= len) {
-                val st = s.substring(n, k)
-                if (s.startsWith(st)) con = (k - n).toLong()
-                if (k > 1 && con == 0L) k = len + 1
-                k++
-            }
-            count += con
-        }
-
-        return count
+        println("LIST $list")
+        return list.sum() + len
     }
 
     class Data (

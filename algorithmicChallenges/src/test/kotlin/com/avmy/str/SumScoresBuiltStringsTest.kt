@@ -34,7 +34,7 @@ internal class SumScoresBuiltStringsTest {
 
     @ParameterizedTest
     @MethodSource(value = ["pair"])
-    fun deleteStringTest(data: Pair<String, Int>) {
+    fun sumScoresV1Test(data: Pair<String, Int>) {
         val result = SumScoresBuiltStrings.sumScoresV1(data.first)
 
         Assertions.assertEquals(data.second, result)
@@ -42,16 +42,7 @@ internal class SumScoresBuiltStringsTest {
 
     @ParameterizedTest
     @MethodSource(value = ["pair"])
-    fun deleteStringTestV2(data: Pair<String, Int>) {
-        val result = SumScoresBuiltStrings.sumScoresV2(data.first)
-
-        Assertions.assertEquals(data.second, result)
-    }
-
-
-    @ParameterizedTest
-    @MethodSource(value = ["pair"])
-    fun deleteStringTestV1(data: Pair<String, Int>) {
+    fun sumScoresTest(data: Pair<String, Int>) {
         val result = SumScoresBuiltStrings.sumScores(data.first)
 
         Assertions.assertEquals(data.second, result)
