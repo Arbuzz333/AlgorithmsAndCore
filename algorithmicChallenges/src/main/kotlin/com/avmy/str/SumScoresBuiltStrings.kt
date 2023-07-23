@@ -1,7 +1,5 @@
 package com.avmy.str
 
-import com.avmy.palindrome.ShortestPalindrome.kmp
-
 
 /*
 * You are building a string s of length n one character at a time, prepending each new character to the front of the string. The strings are labeled from 1 to n, where the string with length i is labeled si.
@@ -16,16 +14,36 @@ object SumScoresBuiltStrings {
 
     fun sumScoresV1(s: String): Long {
         val len = s.length
+        val list = kmpReversed(s)
+        return list.sum() + len
+    }
+
+    private fun kmpReversed(s: String): MutableList<Long> {
+        val n: Int = s.length
+        val buffArray = IntArray(n)
         val list = mutableListOf<Long>()
-        val kmp = kmp(s)
-        println("KMP ${kmp.joinToString() }")
-        for (k in kmp) {
+        list.add(0)
+
+        for (index in 1 until n) {
+            var count = buffArray[index - 1]
+            while (count >= 0) {
+                if (s[count] == s[index]) {
+                    buffArray[index] = count + 1
+                    count = -1
+                } else {
+                    count = if (count - 1 < 0){
+                        -1
+                    } else {
+                        buffArray[count - 1]
+                    }
+                }
+            }
+            val k = buffArray[index]
             val i = if (k == 0) 0 else list[k - 1] + 1
             list.add(i)
-            println("I $i")
         }
-        println("LIST $list")
-        return list.sum() + len
+
+        return list
     }
 
     class Data (
